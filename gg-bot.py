@@ -3,9 +3,9 @@ import markovify
 import random
 import json
 import pickle
-import configparser
 import tweepy
 import time
+from local_settings import *
 
 basepath = os.path.dirname(os.path.abspath(__file__))
 
@@ -19,15 +19,11 @@ class POSifiedText(markovify.Text):
         sentence = " ".join(word.split("::")[0] for word in words)
         return sentence
 
-# Read the config file
-config = configparser.ConfigParser()
-config.read(basepath+'/config/config.ini')
-
 # Set all of the variables we need for Twitter
-consumer_key = config['Twitter']['consumer_key']
-consumer_secret = config['Twitter']['consumer_secret']
-access_token = config['Twitter']['access_token']
-access_token_secret = config['Twitter']['access_token_secret']
+consumer_key = MY_CONSUMER_KEY
+consumer_secret = MY_CONSUMER_SECRET
+access_token = MY_ACCESS_TOKEN_KEY
+access_token_secret = MY_ACCESS_TOKEN_SECRET
 
 # Authenticate with Twitter
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -64,4 +60,3 @@ while True:
 				go = False
 
 	api.update_status(tweet)
-	time.sleep(21600)
