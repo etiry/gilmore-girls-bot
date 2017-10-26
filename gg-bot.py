@@ -37,26 +37,25 @@ characters = ['ZACH', 'TAYLOR', 'SOOKIE', 'RORY', 'RICHARD', 'PARIS', 'MISS PATT
     'MICHEL', 'MAX', 'LUKE', 'LORELAI', 'LOGAN', 'LANE', 'KIRK', 'JESS', 'JASON', \
     'JACKSON', 'EMILY', 'DEAN', 'CHRISTOPHER']
 
-while True:
-	tweet = ''
-	go = True
-	while go:
-		for i in range(1,3):
-			choice = random.choice(characters)
+tweet = ''
+go = True
+while go:
+	for i in range(1,3):
+		choice = random.choice(characters)
 
-			with open(basepath+'/text/{}-markov-model.pickle'.format(choice), 'rb') as handle:
-			    model = pickle.load(handle)
+		with open(basepath+'/text/{}-markov-model.pickle'.format(choice), 'rb') as handle:
+		    model = pickle.load(handle)
 
-			line = choice+': '+model.make_short_sentence(70)
+		line = choice+': '+model.make_short_sentence(70)
 
-			if i==1:
-				tweet += line+'\n'
-			else:
-				tweet += line
+		if i==1:
+			tweet += line+'\n'
+		else:
+			tweet += line
 
-			if len(tweet) > 140:
-				tweet = ''
-			else:
-				go = False
+		if len(tweet) > 140:
+			tweet = ''
+		else:
+			go = False
 
-	api.update_status(tweet)
+api.update_status(tweet)
