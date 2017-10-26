@@ -5,7 +5,6 @@ import json
 import pickle
 import tweepy
 import time
-from local_settings import *
 
 basepath = os.path.dirname(os.path.abspath(__file__))
 
@@ -20,10 +19,10 @@ class POSifiedText(markovify.Text):
         return sentence
 
 # Set all of the variables we need for Twitter
-consumer_key = MY_CONSUMER_KEY
-consumer_secret = MY_CONSUMER_SECRET
-access_token = MY_ACCESS_TOKEN_KEY
-access_token_secret = MY_ACCESS_TOKEN_SECRET
+consumer_key = os.environ(MY_CONSUMER_KEY)
+consumer_secret = os.environ(MY_CONSUMER_SECRET)
+access_token = os.environ(MY_ACCESS_TOKEN_KEY)
+access_token_secret = os.environ(MY_ACCESS_TOKEN_SECRET)
 
 # Authenticate with Twitter
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
