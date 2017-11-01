@@ -44,7 +44,7 @@ def post_tweet():
 		for i in range(1,3):
 			choice = random.choice(characters)
 
-			with open(basepath+'/text/{}-markov-model.pickle'.format(choice), 'rb') as handle:
+			with open(basepath+'/text/all-lines-markov-model.pickle', 'rb') as handle:
 			    model = pickle.load(handle)
 
 			line = choice+': '+model.make_short_sentence(70)
