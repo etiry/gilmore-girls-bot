@@ -20,10 +20,10 @@ class POSifiedText(markovify.Text):
         return sentence
 
 # Set all of the variables we need for Twitter
-consumer_key = MY_CONSUMER_KEY
-consumer_secret = MY_CONSUMER_SECRET
-access_token = MY_ACCESS_TOKEN_KEY
-access_token_secret = MY_ACCESS_TOKEN_SECRET
+consumer_key = os.environ['CONSUMER_KEY']
+consumer_secret = os.environ['CONSUMER_SECRET']
+access_token = os.environ['ACCESS_TOKEN_KEY']
+access_token_secret = os.environ['ACCESS_TOKEN_SECRET']
 
 # Authenticate with Twitter
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -37,25 +37,30 @@ characters = ['ZACH', 'TAYLOR', 'SOOKIE', 'RORY', 'RICHARD', 'PARIS', 'MISS PATT
     'MICHEL', 'MAX', 'LUKE', 'LORELAI', 'LOGAN', 'LANE', 'KIRK', 'JESS', 'JASON', \
     'JACKSON', 'EMILY', 'DEAN', 'CHRISTOPHER']
 
-tweet = ''
-go = True
-while go:
-	for i in range(1,3):
-		choice = random.choice(characters)
+def post_tweet():
+	tweet = ''
+	go = True
+	while go:
+		for i in range(1,3):
+			choice = random.choice(characters)
 
-		with open(basepath+'/text/{}-markov-model.pickle'.format(choice), 'rb') as handle:
-		    model = pickle.load(handle)
+			with open(basepath+'/text/{}-markov-model.pickle'.format(choice), 'rb') as handle:
+			    model = pickle.load(handle)
 
-		line = choice+': '+model.make_short_sentence(70)
+			line = choice+': '+model.make_short_sentence(70)
 
-		if i==1:
-			tweet += line+'\n'
-		else:
-			tweet += line
+			if i==1:
+				tweet += line+'\n'
+			else:
+				tweet += line
 
-		if len(tweet) > 140:
-			tweet = ''
-		else:
-			go = False
+			if len(tweet) > 140:
+				tweet = ''
+			else:
+				go = False
 
-api.update_status(tweet)
+	api.update_status(tweet)
+	time.sleep(21600)
+
+while True:
+	post_tweet()
