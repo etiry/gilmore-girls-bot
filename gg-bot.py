@@ -7,7 +7,7 @@ import tweepy
 import time
 from local_settings import *
 
-basepath = os.path.dirname(os.path.abspath(__file__))
+basepath = os.path.dirname(os.path.dirname(__file__))
 
 class POSifiedText(markovify.Text):
     def word_split(self, sentence):
@@ -44,7 +44,7 @@ def post_tweet():
 		for i in range(1,3):
 			choice = random.choice(characters)
 
-			with open(basepath+'/app/text/{}-markov-model.pickle'.format(choice), 'rb') as handle:
+			with open(basepath+'/text/{}-markov-model.pickle'.format(choice), 'rb') as handle:
 			    model = pickle.load(handle)
 
 			line = choice+': '+model.make_short_sentence(70)
