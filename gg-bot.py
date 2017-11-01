@@ -7,7 +7,7 @@ import tweepy
 import time
 from local_settings import *
 
-basepath = os.path.dirname(os.path.dirname(__file__))
+basepath = os.path.dirname(os.path.abspath(__file__))
 
 class POSifiedText(markovify.Text):
     def word_split(self, sentence):
