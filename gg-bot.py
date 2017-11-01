@@ -60,7 +60,7 @@ def post_tweet():
 				go = False
 
 	api.update_status(tweet)
-	time.sleep(180)
+	time.sleep(14400)
 
 while True:
 	post_tweet()
