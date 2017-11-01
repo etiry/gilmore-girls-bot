@@ -39,8 +39,8 @@ characters = ['ZACH', 'TAYLOR', 'SOOKIE', 'RORY', 'RICHARD', 'PARIS', 'MISS PATT
 
 def post_tweet():
 	tweet = ''
-	random = random.randint(1,101)
-	if random < 51:
+	r = random.randint(1,101)
+	if r < 51:
 		go = True
 		while go:
 			for i in range(1,3):
