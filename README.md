@@ -1,7 +1,7 @@
 # Follow *[@markovgilmore](https://twitter.com/markovgilmore)* on Twitter!
 
 
-A Gilmore Girls Twitter bot that uses Markov chains to generate random nonsensical script snippets.
+A Gilmore Girls Twitter bot that uses Markov chains to generate realistic-looking but mostly nonsensical script snippets based on the show transcripts.
 
 Created using:
 * Python 3
