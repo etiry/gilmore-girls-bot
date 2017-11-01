@@ -1,4 +1,4 @@
-# Follow *[@random_gilmore](https://twitter.com/random_gilmore)* on Twitter!
+# Follow *[@markovgilmore](https://twitter.com/markovgilmore)* on Twitter!
 
 
 A Gilmore Girls Twitter bot that uses Markov chains to generate random nonsensical script snippets.
