@@ -39,25 +39,34 @@ characters = ['ZACH', 'TAYLOR', 'SOOKIE', 'RORY', 'RICHARD', 'PARIS', 'MISS PATT
 
 def post_tweet():
 	tweet = ''
-	go = True
-	while go:
-		for i in range(1,3):
-			choice = random.choice(characters)
+	random = random.randint(1,101)
+	if random < 51:
+		go = True
+		while go:
+			for i in range(1,3):
+				choice = random.choice(characters)
 
-			with open(basepath+'/text/all-lines-markov-model.pickle', 'rb') as handle:
-			    model = pickle.load(handle)
+				with open(basepath+'/text/all-lines-markov-model.pickle', 'rb') as handle:
+				    model = pickle.load(handle)
 
-			line = choice+': '+model.make_short_sentence(70)
+				line = choice+': '+model.make_short_sentence(70)
 
-			if i==1:
-				tweet += line+'\n'
-			else:
-				tweet += line
+				if i==1:
+					tweet += line+'\n'
+				else:
+					tweet += line
 
-			if len(tweet) > 140:
-				tweet = ''
-			else:
-				go = False
+				if len(tweet) > 140:
+					tweet = ''
+				else:
+					go = False
+	else:
+		choice = random.choice(characters)
+
+		with open(basepath+'/text/all-lines-markov-model.pickle', 'rb') as handle:
+			model = pickle.load(handle)
+
+		tweet = choice+': '+model.make_short_sentence(140)
 
 	api.update_status(tweet)
 	time.sleep(14400)
