@@ -1,0 +1,6 @@
+import os
+
+os.environ['CONSUMER_KEY'] = 'WQPMzqX0KKfUumj41YbGFHLUi'
+os.environ['CONSUMER_SECRET'] = 'OPsHep9nTZbAdVMIZkBUDVQBgHkjXznRMrfPAZlKauNcGZfv12'
+os.environ['ACCESS_TOKEN_KEY'] = '923366953007435782-ez39VoqiAM6HPiGclZNA6xNJGTTcddp'
+os.environ['ACCESS_TOKEN_SECRET'] = 'V3E7bmCvdr2US1BjFfHoEvXvvVHCNCLmcXPNLkGZrxbC8'
