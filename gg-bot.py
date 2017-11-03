@@ -69,7 +69,7 @@ def post_tweet():
 		tweet = choice+': '+model.make_short_sentence(140)
 
 	api.update_status(tweet)
-	time.sleep(14400)
+	time.sleep(3600)
 
 while True:
 	post_tweet()
