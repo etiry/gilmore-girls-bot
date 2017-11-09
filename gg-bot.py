@@ -49,14 +49,14 @@ def post_tweet():
 				with open(basepath+'/text/all-lines-markov-model.pickle', 'rb') as handle:
 				    model = pickle.load(handle)
 
-				line = choice+': '+model.make_short_sentence(70)
+				line = choice+': '+model.make_short_sentence(140)
 
 				if i==1:
 					tweet += line+'\n'
 				else:
 					tweet += line
 
-				if len(tweet) > 140:
+				if len(tweet) > 280:
 					tweet = ''
 				else:
 					go = False
@@ -66,7 +66,7 @@ def post_tweet():
 		with open(basepath+'/text/all-lines-markov-model.pickle', 'rb') as handle:
 			model = pickle.load(handle)
 
-		tweet = choice+': '+model.make_short_sentence(140)
+		tweet = choice+': '+model.make_short_sentence(280)
 
 	api.update_status(tweet)
 	time.sleep(3600)
