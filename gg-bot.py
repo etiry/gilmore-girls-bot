@@ -65,7 +65,7 @@ def post_tweet():
 		tweet = choice+': '+model.make_short_sentence(280)
 
 	api.create_tweet(text = tweet)
-	time.sleep(3600)
+	time.sleep(43200)
 
 while True:
 	post_tweet()
