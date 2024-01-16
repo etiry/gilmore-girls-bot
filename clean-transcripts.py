@@ -1,6 +1,5 @@
 import re
 import os
-import configparser
 from bs4 import BeautifulSoup as bs
 
 basepath = os.path.dirname(os.path.abspath(__file__))

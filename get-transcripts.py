@@ -1,6 +1,5 @@
 import time
 import os
-import configparser
 from urllib.request import urlopen
 
 basepath = os.path.dirname(os.path.abspath(__file__))
