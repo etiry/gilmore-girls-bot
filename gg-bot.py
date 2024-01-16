@@ -1,19 +1,13 @@
 import os
 import markovify
 import random
-import json
 import pickle
 import tweepy
 import time
 import re
-import configparser
 from local_settings import *
 
 basepath = os.path.dirname(os.path.abspath(__file__))
-
-config = configparser.ConfigParser()
-config_file = '/config.txt'
-config.read(basepath + config_file)
 
 class POSifiedText(markovify.Text):
     def word_split(self, sentence):
@@ -26,10 +20,10 @@ class POSifiedText(markovify.Text):
         return sentence
 
 # Set all of the variables we need for Twitter
-consumer_key = config['x']['X_CONSUMER_KEY']
-consumer_secret = config['x']['X_CONSUMER_SECRET']
-access_token = config['x']['X_ACCESS_TOKEN_KEY']
-access_token_secret = config['x']['X_ACCESS_TOKEN_SECRET']
+consumer_key = os.environ.get('X_CONSUMER_KEY')
+consumer_secret = os.environ.get('X_CONSUMER_SECRET')
+access_token = os.environ.get('X_ACCESS_TOKEN_KEY')
+access_token_secret = os.environ.get('X_ACCESS_TOKEN_SECRET')
 
 # Authenticate with Twitter
 # Create an API object to use
