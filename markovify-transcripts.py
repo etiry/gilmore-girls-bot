@@ -5,6 +5,8 @@ import re
 import json
 import pickle
 
+nltk.download('averaged_perceptron_tagger')
+
 basepath = os.path.dirname(os.path.abspath(__file__))
 
 class POSifiedText(markovify.Text):
@@ -24,7 +26,7 @@ characters = ['ZACH', 'TAYLOR', 'SOOKIE', 'RORY', 'RICHARD', 'PARIS', 'MISS PATT
 # loop through files
 for c in characters:
     with open(basepath+'/text/{}.txt'.format(c)) as f:
-    	lines = f.read()
+        lines = f.read()
 
     model = POSifiedText(lines)
 

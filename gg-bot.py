@@ -5,9 +5,15 @@ import json
 import pickle
 import tweepy
 import time
+import re
+import configparser
 from local_settings import *
 
 basepath = os.path.dirname(os.path.abspath(__file__))
+
+config = configparser.ConfigParser()
+config_file = '/config.txt'
+config.read(basepath + config_file)
 
 class POSifiedText(markovify.Text):
     def word_split(self, sentence):
@@ -20,18 +26,14 @@ class POSifiedText(markovify.Text):
         return sentence
 
 # Set all of the variables we need for Twitter
-consumer_key = os.environ['CONSUMER_KEY']
-consumer_secret = os.environ['CONSUMER_SECRET']
-access_token = os.environ['ACCESS_TOKEN_KEY']
-access_token_secret = os.environ['ACCESS_TOKEN_SECRET']
+consumer_key = config['x']['X_CONSUMER_KEY']
+consumer_secret = config['x']['X_CONSUMER_SECRET']
+access_token = config['x']['X_ACCESS_TOKEN_KEY']
+access_token_secret = config['x']['X_ACCESS_TOKEN_SECRET']
 
 # Authenticate with Twitter
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
-
 # Create an API object to use
-api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
-
+api = tweepy.Client(consumer_key=consumer_key, consumer_secret=consumer_secret, access_token=access_token, access_token_secret=access_token_secret, wait_on_rate_limit=True)
 
 characters = ['ZACH', 'TAYLOR', 'SOOKIE', 'RORY', 'RICHARD', 'PARIS', 'MISS PATTY', \
     'MICHEL', 'MAX', 'LUKE', 'LORELAI', 'LOGAN', 'LANE', 'KIRK', 'JESS', 'JASON', \
@@ -47,8 +49,8 @@ def post_tweet():
 				choice = random.choice(characters)
 
 				with open(basepath+'/text/all-lines-markov-model.pickle', 'rb') as handle:
-				    model = pickle.load(handle)
-
+						model = pickle.load(handle)
+						
 				line = choice+': '+model.make_short_sentence(140)
 
 				if i==1:
@@ -68,7 +70,8 @@ def post_tweet():
 
 		tweet = choice+': '+model.make_short_sentence(280)
 
-	api.update_status(tweet)
+	print(tweet)
+	api.create_tweet(text = tweet)
 	time.sleep(3600)
 
 while True:
