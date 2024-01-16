@@ -20,10 +20,10 @@ class POSifiedText(markovify.Text):
         return sentence
 
 # Set all of the variables we need for Twitter
-consumer_key = os.environ.get('X_CONSUMER_KEY')
-consumer_secret = os.environ.get('X_CONSUMER_SECRET')
-access_token = os.environ.get('X_ACCESS_TOKEN_KEY')
-access_token_secret = os.environ.get('X_ACCESS_TOKEN_SECRET')
+consumer_key = os.getenv('X_CONSUMER_KEY')
+consumer_secret = os.getenv('X_CONSUMER_SECRET')
+access_token = os.getenv('X_ACCESS_TOKEN_KEY')
+access_token_secret = os.getenv('X_ACCESS_TOKEN_SECRET')
 
 # Authenticate with Twitter
 # Create an API object to use
@@ -64,7 +64,6 @@ def post_tweet():
 
 		tweet = choice+': '+model.make_short_sentence(280)
 
-	print(tweet)
 	api.create_tweet(text = tweet)
 	time.sleep(3600)
 
