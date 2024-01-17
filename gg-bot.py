@@ -5,7 +5,7 @@ import pickle
 import tweepy
 import time
 import re
-from local_settings import *
+#from local_settings import *
 
 basepath = os.path.dirname(os.path.abspath(__file__))
 
